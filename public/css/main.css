@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+header {
+    background-color: lightblue;
+    padding: 10px;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: aliceblue;
+}
+
+.menu {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.menu li {
+    list-style: none;
+    margin: 30px;
+    padding: 5px;
+}
+.menu li a {
+    text-decoration: none;
+    font-size: 23px;
+    color: black;
+    transition: 0.5s ease;
+    padding: 5px;
+}
+.menu li a:hover {
+    background-color: grey;
+    color: white;
+}
+.active-menu {
+    color: white;
+    font-size: 23px;
+    background-color: grey;
+}
