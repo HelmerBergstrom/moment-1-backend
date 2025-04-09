@@ -12,8 +12,8 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.get("/addmember", (req, res) => {
-    res.render("addmember");
+app.get("/addcourse", (req, res) => {
+    res.render("addcourse");
 });
 
 app.get("/about", (req, res) => {
