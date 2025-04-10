@@ -16,7 +16,16 @@
     </nav>
 </header>
 <body>
-    <h1> Lagrade kurser </h1>
-
+    <h1> Lagrade kurser </h1> 
+    
+    <ul>
+        <% courseList.forEach(course => { %>
+            <li>
+                <strong><%= course.coursecode %></strong>: <%= course.coursename %> –
+                <a href="<%= course.syllabus %>">Kursplan</a> –
+                Progression: <%= course.progression %>
+            </li>
+        <% }) %>
+    </ul>
 </body>
 </html>

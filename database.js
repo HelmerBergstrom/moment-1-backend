@@ -22,19 +22,12 @@ connection.connect((error) => {
 connection.query("CREATE DATABASE IF NOT EXISTS cv", (error, results) => {
     if(error) throw error;
 
-    console.log("Databas skapad! " + results);
-})
-
-// Raderar tabell "courses" om tabellen finns.
-connection.query("DROP TABLE IF EXISTS courses", (error, results) => {
-    if(error) throw error;
-
-    console.log("Tabell raderad " + results);
+    console.log("Databas skapad om den inte redan fanns! " + results);
 });
 
-
 // Skapar tabell "courses" med id som primärnyckel. Lägger till "created" för att visa tillägningsdatum.
-connection.query(`CREATE TABLE courses (
+// Kör IF NOT EXISTS så tabellen endast skapas om den inte finns.
+connection.query(`CREATE TABLE IF NOT EXISTS courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     coursecode VARCHAR(20),
     coursename VARCHAR(200),
@@ -43,5 +36,14 @@ connection.query(`CREATE TABLE courses (
     created DATETIME DEFAULT CURRENT_TIMESTAMP )`, (error, results) => {
         if(error) throw error;
 
-        console.log("Table created " + results)
-    });
+        console.log("Table created IF NOT EXISTS " + results)
+});
+
+module.exports = connection; // Exporterar anslutningen för att kunna använda den i server.js via "require"
+
+// // Raderar tabell "courses" om tabellen finns.
+// connection.query("DROP TABLE IF EXISTS courses", (error, results) => {
+//     if(error) throw error;
+
+//     console.log("Tabell raderad " + results);
+// });
