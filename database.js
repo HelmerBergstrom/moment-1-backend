@@ -25,15 +25,14 @@ connection.query("CREATE DATABASE IF NOT EXISTS cv", (error, results) => {
     console.log("Databas skapad om den inte redan fanns! " + results);
 });
 
-// Skapar tabell "courses" med id som primärnyckel. Lägger till "created" för att visa tillägningsdatum.
+// Skapar tabell "courses" med id som primärnyckel.
 // Kör IF NOT EXISTS så tabellen endast skapas om den inte finns.
 connection.query(`CREATE TABLE IF NOT EXISTS courses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     coursecode VARCHAR(20),
     coursename VARCHAR(200),
     syllabus VARCHAR(255),
-    progression VARCHAR(255),
-    created DATETIME DEFAULT CURRENT_TIMESTAMP )`, (error, results) => {
+    progression VARCHAR(255) )`, (error, results) => {
         if(error) throw error;
 
         console.log("Table created IF NOT EXISTS " + results)

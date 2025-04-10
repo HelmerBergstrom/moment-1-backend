@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./database");
   
 // Lägger till vägar till de olika sidorna.
-// Index-filen/startsidan hämtar kurserna, sorterar via "created" och skriver ut via "courseList".
+// Index-filen/startsidan hämtar kurserna och skriver ut via "courseList".
 app.get("/", (req, res) => {
-    const query = "SELECT * FROM courses ORDER BY created DESC";
+    const query = "SELECT * FROM courses";
 
     db.query(query, (error, results) => {
         if(error) {
@@ -51,6 +51,20 @@ app.post("/addcourse", (req, res) => {
             res.redirect("/");
         })
 });
+
+app.post("/deletecourse", (req, res) => {
+    const { id } = req.body;
+
+    const query = "DELETE FROM courses WHERE id = ?";
+
+    db.query(query, [id], (error, results) => {
+        if(error) {
+            console.error("Gick inte att radera: " + error);
+        }
+
+        res.redirect("/");
+    })
+})
 
 app.get("/about", (req, res) => {
     res.render("about");

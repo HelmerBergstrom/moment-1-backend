@@ -16,16 +16,35 @@
     </nav>
 </header>
 <body>
-    <h1> Lagrade kurser </h1> 
-    
-    <ul>
+    <h1> Kurslista </h1>
+
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center;"> Kurskod </th>
+            <th> Kursnamn </th>
+            <th> Kursplan </th>
+            <th> Progression </th>
+            <th style="text-align: center;"> Radera kurs </th>
+        </tr>
+    </thead>
+    <tbody>
         <% courseList.forEach(course => { %>
-            <li>
-                <strong><%= course.coursecode %></strong>: <%= course.coursename %> –
-                <a href="<%= course.syllabus %>">Kursplan</a> –
-                Progression: <%= course.progression %>
-            </li>
+            <tr>
+                <td id="courseCodeText"><%= course.coursecode %></td>
+                <td><%= course.coursename %></td>
+                <td id="link"><a href="<%= course.syllabus %>"> LÄNK </a></td>
+                <td id="progressionText"><%= course.progression %></td>
+                <td id="delete-button">
+                    <form method="POST" action="/deletecourse">
+                        <input type="hidden" name="id" value="<%= course.id %>">
+                        <button type="submit"> Radera </button>
+                    </form>
+                </td>
+            </tr>
         <% }) %>
-    </ul>
+    </tbody>
+</table>
+
 </body>
 </html>

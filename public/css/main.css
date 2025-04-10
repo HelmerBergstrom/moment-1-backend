@@ -50,7 +50,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-form {
+#form-style {
     background-color: lightblue;
     display: flex;
     flex-direction: column;
@@ -91,4 +91,72 @@ label {
     cursor: pointer;
     background-color: grey;
     color: white;
+}
+
+/* Startsidans tabell-stilar. */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+th {
+    background-color: rgb(96, 147, 164);
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 18px;
+}
+
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+tr {
+    background-color: white;
+}
+tr:hover {
+    background-color: aliceblue;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#courseCodeText {
+    width: 170px;
+    text-align: center;
+}
+#link {
+    width: 80px;
+    text-align: center;
+}
+#progressionText {
+    width: 100px;
+    text-align: center;
+}
+
+#delete-button {
+    width: 250px;
+    text-align: center;
+}
+#delete-button button {
+    background-color: red;
+    padding: 15px 30px;
+    color: white;
+    font-size: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#delete-button button:hover {
+    background-color: rgb(155, 0, 0);
 }
