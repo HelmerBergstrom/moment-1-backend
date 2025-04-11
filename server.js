@@ -32,6 +32,30 @@ app.get("/addcourse", (req, res) => {
 app.post("/addcourse", (req, res) => {
     // Tar name-attributen i formuläret.
     const { coursecode, coursename, syllabus, progression } = req.body;
+    let errors = [];
+
+    let newCourseCode = req.body.coursecode;
+    let newCourseName = req.body.coursename; 
+    let newSyllabus = req.body.syllabus; 
+    let newProgression = req.body.progression; 
+
+    if(newCourseCode === "") {
+        errors.push("Du måste ange en kurskod!")
+    }
+    if(newCourseName === "") {
+        errors.push("Du måste ange ett kursnamn!")
+    }
+    if(newSyllabus === "") {
+        errors.push("Du måste ange korrekt länk!")
+    }
+    if (!newProgression || newProgression === "") {
+        errors.push("Du måste ange en progression!");
+    }    
+
+    // Finns error skickas användaren tillbaks till addCourse-sidan där formuläret finns.
+    if (errors.length > 0) {
+        return res.render("addCourse", { errors, coursecode, coursename, syllabus, progression });
+    }
 
     // lägger till en ny rad i databasens tabell courses.
     // SQL-injektion förhindras genom frågetecknen. Ett frågetecken per insert-värde.

@@ -19,6 +19,16 @@
 
     <h1> Lägg till kurser </h1>
 
+        <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+            <ul id="error-message">
+                <% errors.forEach((error) => { %>
+                    <li>
+                        <%= error %>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+
     <form method="post" id="form-style">
         <label for="coursecode"> Kurskod: </label>
         <input type="text" id="coursecode" name="coursecode">
@@ -30,7 +40,7 @@
         <input type="url" id="syllabus" name="syllabus">
         <br>
         <select name="progression" id="progression">
-            <option value="-" selected disabled> Välj progression</option>
+            <option value="" selected disabled> Välj progression</option>
             <option value="A"> A </option>
             <option value="B"> B </option>
             <option value="C"> C </option>
