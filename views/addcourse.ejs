@@ -31,13 +31,13 @@
 
     <form method="post" id="form-style">
         <label for="coursecode"> Kurskod: </label>
-        <input type="text" id="coursecode" name="coursecode">
+        <input type="text" id="coursecode" name="coursecode" value="<%= coursecode || '' %>">
         <br>
         <label for="coursename">Kursnamn: </label>
-        <input type="text" id="coursename" name="coursename">
+        <input type="text" id="coursename" name="coursename" value="<%= coursename || '' %>">
         <br>
         <label for="syllabus">Länk till kursplan: </label>
-        <input type="url" id="syllabus" name="syllabus">
+        <input type="url" id="syllabus" name="syllabus" value="<%= syllabus || '' %>">
         <br>
         <select name="progression" id="progression">
             <option value="" selected disabled> Välj progression</option>

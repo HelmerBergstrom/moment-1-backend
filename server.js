@@ -23,8 +23,14 @@ app.get("/", (req, res) => {
     })
 });
 
+// Skickar med formulärfälten med tomma strängar och error.
 app.get("/addcourse", (req, res) => {
-    res.render("addcourse");
+    res.render("addcourse", {
+        errors: [],
+        coursecode: '',
+        coursename: '',
+        syllabus: ''
+    });
 });
 
 // "POST" som fångar de användaren matat in i formuläret.
@@ -34,11 +40,13 @@ app.post("/addcourse", (req, res) => {
     const { coursecode, coursename, syllabus, progression } = req.body;
     let errors = [];
 
+    // Deklarerar variabler för formulärfälten.
     let newCourseCode = req.body.coursecode;
     let newCourseName = req.body.coursename; 
     let newSyllabus = req.body.syllabus; 
     let newProgression = req.body.progression; 
 
+    // Skriver ut felmeddelanden om allt inte är ifyllt.
     if(newCourseCode === "") {
         errors.push("Du måste ange en kurskod!")
     }
@@ -53,8 +61,9 @@ app.post("/addcourse", (req, res) => {
     }    
 
     // Finns error skickas användaren tillbaks till addCourse-sidan där formuläret finns.
+    // Skickar även med formulärfälten.
     if (errors.length > 0) {
-        return res.render("addCourse", { errors, coursecode, coursename, syllabus, progression });
+        return res.render("addCourse", { errors, coursecode, coursename, syllabus });
     }
 
     // lägger till en ny rad i databasens tabell courses.
@@ -76,7 +85,9 @@ app.post("/addcourse", (req, res) => {
         })
 });
 
+// app.post som körs när användaren raderar en rad i kurslistan. "id" är alltså primärnyckeln i databasen/tabellen.
 app.post("/deletecourse", (req, res) => {
+    // Hämtar id från den rad som användaren klickar "radera" på.
     const { id } = req.body;
 
     const query = "DELETE FROM courses WHERE id = ?";
@@ -86,6 +97,7 @@ app.post("/deletecourse", (req, res) => {
             console.error("Gick inte att radera: " + error);
         }
 
+        // Skickar användaren tillbaka till startsidan med uppdaterad lista.
         res.redirect("/");
     })
 })
