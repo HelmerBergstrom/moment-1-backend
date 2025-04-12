@@ -2,10 +2,10 @@ const mysql = require("mysql");
 
 // Inloggningsuppgifter + inställningar för anslutning.
 const connection = mysql.createConnection({
-    host: "localhost",
-    user: "cvdatabase",
-    password: "databaseforcv",
-    database: "cv"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
 });
 
 // Kontroll om det går att ansluta.
