@@ -1,51 +1,40 @@
-const mysql = require("mysql");
+const { Client } = require("pg");
 
-// Inloggningsuppgifter + inställningar för anslutning.
-const connection = mysql.createConnection({
+const client = new Client({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT || 5432,
     ssl: {
         rejectUnauthorized: true
     }
 });
 
-// Kontroll om det går att ansluta.
-connection.connect((error) => {
-    if(error) {
+// Kontrollerar om det går att anstluta.
+client.connect((error) => {
+    if (error) {
         console.error("Connection fail: " + error);
         return;
     }
 
-    console.log("Connection success!")
+    console.log("Connection success!");
+
+    // Skapar tabell "courses" om den inte redan finns, om det går att ansluta.
+    client.query(`CREATE TABLE IF NOT EXISTS courses (
+        id SERIAL PRIMARY KEY,
+        coursecode VARCHAR(20),
+        coursename VARCHAR(200),
+        syllabus VARCHAR(255),
+        progression VARCHAR(255)
+    )`, (err, result) => {
+        release(); 
+        if (err) {
+            console.error("Fel av skapande (tabell)", err);
+        } else {
+            console.log("Table created IF NOT EXISTS", result);
+        }
+    });
 });
 
-// Kod för att skapa databas OM den inte redan finns.
-connection.query("CREATE DATABASE IF NOT EXISTS cv", (error, results) => {
-    if(error) throw error;
-
-    console.log("Databas skapad om den inte redan fanns! " + results);
-});
-
-// Skapar tabell "courses" med id som primärnyckel.
-// Kör IF NOT EXISTS så tabellen endast skapas om den inte finns.
-connection.query(`CREATE TABLE IF NOT EXISTS courses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    coursecode VARCHAR(20),
-    coursename VARCHAR(200),
-    syllabus VARCHAR(255),
-    progression VARCHAR(255) )`, (error, results) => {
-        if(error) throw error;
-
-        console.log("Table created IF NOT EXISTS " + results)
-});
-
-module.exports = connection; // Exporterar anslutningen för att kunna använda den i server.js via "require"
-
-// // Raderar tabell "courses" om tabellen finns.
-// connection.query("DROP TABLE IF EXISTS courses", (error, results) => {
-//     if(error) throw error;
-
-//     console.log("Tabell raderad " + results);
-// });
+module.exports = client;
