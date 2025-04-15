@@ -27,19 +27,26 @@
         <p>
             Webbplatsen använder sig av en databas-server för att lagra och visa en kurslista som användare skapar själv.
         <br>
-            MySQL används som databas för denna webbplats. Användare kan på "LÄGG TILL KURS"-sidan mata in en kurs i valfritt syfte
+            MySQL användes från början som databas för denna webbplats. Användare kan på "LÄGG TILL KURS"-sidan mata in en kurs i valfritt syfte
             och lägga till kursen i kurslistan som visas på startsidan "VISA KURSER". I listan visas kursen som användaren valt att lägga till 
             samt en knapp för att radera kursen från listan. Användarens kurser lagras i databasen efter klick på "Lägg till kurs!"-knappen på
             "LÄGG TILL KURS"-sidan och raderas från databasen när användaren klickar på "Radera"-knappen. 
+        <br>
+            Innan inlämning av uppgiften uppkom problem. Att publicera med MySQL var svårt att hitta information om. Det gick så långt att hela 
+            projektet ändrades till att köra med PostgreSQL, för att enklare hantera publiceringen med hemsidan Render. Denna ändring var relativt enkel att implementera
+            i kodningen. Jag ändrade bland annat alla frågetecken(?) i databasfrågorna till dollartecken($) med ett följande nummer. 
+            Jag behövde även ändra lite annat i koden, men det gick bra.
         </p>    
 
     <h2> Slutsatser </h2>
         <p>
-            Kodningen och själva skapandet av webbplatsen var en svår att få till. Speciellt svårt var såklart kopplingarna mellan databasen, formuläret
+            Kodningen och själva skapandet av webbplatsen var svår att få till. Speciellt svårt var såklart kopplingarna mellan databasen, formuläret
             och webbplatsen i sig. Det som jag upplever är jobbigt är att påbörja dessa arbeten, när vi ska använda olika verktyg som Express, EJS osv. 
             Jag får alltid en känsla av att det blir rörigt när det är så många olika verktyg man ska använda. I denna uppgift användes Express, EJS, MySQL,
-            och Nodemon som var nytt. MySQL har vi jobbat med i tidigare kursen "Databaser", men inte i samma grad. Det blir mycket nytt att lära sig, vilket
-            såklart alltid är nyttigt, men att ladda hem paket rätt och konfiguera så att det fungerar känns alltid lurigt för mig.
+            och Nodemon som var nytt, även PostgreSQL tillslut. MySQL har vi jobbat med i tidigare kursen "Databaser", men inte i samma grad. PostgreSQL va nytt
+            men samtidigt likt MySQL, vilket var skönt.
+            Det blir mycket nytt att lära sig, vilket såklart alltid är nyttigt, men att ladda hem paket rätt och konfiguera så att det fungerar 
+            känns alltid lurigt för mig.
         </p>
         <p>
             Jag gillade uppgiften överlag. Det känns kul att äntligen få användning av databaser på ett bredare plan.
