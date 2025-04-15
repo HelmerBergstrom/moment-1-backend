@@ -28,7 +28,6 @@ client.connect((error) => {
         syllabus VARCHAR(255),
         progression VARCHAR(255)
     )`, (err, result) => {
-        release(); 
         if (err) {
             console.error("Fel av skapande (tabell)", err);
         } else {
