@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 // Skickar med formulärfälten med tomma strängar och error.
 app.get("/addcourse", (req, res) => {
-    res.render("addCourse", {
+    res.render("addcourse", {
         errors: [],
         coursecode: '',
         coursename: '',
@@ -65,7 +65,7 @@ app.post("/addcourse", (req, res) => {
     // Finns error skickas användaren tillbaks till addCourse-sidan där formuläret finns.
     // Skickar även med formulärfälten.
     if (errors.length > 0) {
-        return res.render("addCourse", { errors, coursecode, coursename, syllabus, progression });
+        return res.render("addcourse", { errors, coursecode, coursename, syllabus, progression });
     }
 
     // lägger till en ny rad i databasens tabell courses.
