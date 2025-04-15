@@ -20,7 +20,8 @@ app.get("/", (req, res) => {
         if(error) {
             console.error("Fel vid hämtning från databasen: " + error);
         }
-        res.render("index", { courseList: results });
+        const courseList = Array.isArray(results) ? results : [];
+        res.render("index", { courseList });
     })
 });
 

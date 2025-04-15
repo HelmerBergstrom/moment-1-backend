@@ -31,6 +31,7 @@
         </tr>
     </thead>
     <tbody>
+        <% if (courseList && Array.isArray(courseList)) { %>
         <% courseList.forEach(course => { %>
             <tr>
                 <td id="courseCodeText"><%= course.coursecode %></td>
@@ -44,7 +45,7 @@
                     </form>
                 </td>
             </tr>
-        <% }) %>
+        <% })} %>
     </tbody>
 </table>
 
