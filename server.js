@@ -71,7 +71,7 @@ app.post("/addcourse", (req, res) => {
     }
 
     // lägger till en ny rad i databasens tabell courses.
-    // SQL-injektion förhindras genom frågetecknen. Ett frågetecken per insert-värde.
+    // SQL-injektion förhindras genom frågetecknen. Ett $ följt av nummer per insert-värde.
     const query = `INSERT INTO courses (
         coursecode,
         coursename,
