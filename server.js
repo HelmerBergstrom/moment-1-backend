@@ -20,7 +20,9 @@ app.get("/", (req, res) => {
         if(error) {
             console.error("Fel vid hämtning från databasen: " + error);
         }
-        const courseList = Array.isArray(results) ? results : [];
+        // Kontrollerar om results.rows är en array. Om det är det sätts courseList till results.rows.
+        // Sätter till en tom array om det inte är en array.
+        const courseList = Array.isArray(results.rows) ? results.rows : [];        
         res.render("index", { courseList });
     })
 });
